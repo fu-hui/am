@@ -2,10 +2,21 @@ package main
 
 import (
 	"github.com/fu-hui/am/src/controller"
+	"github.com/fu-hui/am/src/dao"
 	"github.com/gin-gonic/gin"
+	"log"
+	"os"
 )
 
 func main() {
+	// 1. init db
+	if err := dao.InitDb(); err != nil {
+		log.Printf("init db fail, err is:%v\n", err)
+		os.Exit(1)
+	}
+	log.Println("init db service success")
+
+	// 2. init web
 	r := gin.Default()
 	userGroup := r.Group("/am/v1/user")
 
@@ -22,6 +33,14 @@ func main() {
 		})
 	})
 
-	// listen and serve on 0.0.0.0:8080
-	_ = r.Run()
+	go func() {
+		// listen and serve on 0.0.0.0:8080
+		if err := r.Run(); err != nil {
+			log.Printf("init web fail, err is:%v\n", err)
+			os.Exit(1)
+		}
+	}()
+
+	log.Println("am service start end")
+	select {}
 }
