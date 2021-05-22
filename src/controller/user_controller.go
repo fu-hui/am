@@ -35,7 +35,7 @@ func CreateUser(context *gin.Context) {
 
 	context.JSON(http.StatusBadRequest, model.HttpResponse{
 		Code: model.Ok,
-		Msg:  "parse req json data fail",
+		Msg:  "Ok",
 	})
 }
 
