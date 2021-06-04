@@ -18,5 +18,5 @@ echo "build service success"
 
 # 3. docker build
 echo "build docker build"
-docker build -t fuhui/golang-am:2.0 .
+docker build -t fuhui/golang-am:3.0 .
 echo "docker build success"

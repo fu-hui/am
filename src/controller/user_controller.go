@@ -33,7 +33,7 @@ func CreateUser(context *gin.Context) {
 		return
 	}
 
-	context.JSON(http.StatusBadRequest, model.HttpResponse{
+	context.JSON(http.StatusOK, model.HttpResponse{
 		Code: model.Ok,
 		Msg:  "Ok",
 	})
